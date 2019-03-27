@@ -15,7 +15,7 @@ jobs:
             sudo apt install apt-utils -y
             sudo apt-get install python3 -y
             sudo apt install python3-pip -y
-      -run:
+      - run:
           name: Install AWS Cli
           command: sudo pip3 install awscli && export PATH=$PATH:$HOME/.local/bin
       - run:
@@ -40,21 +40,29 @@ jobs:
           command: |
             ls -al
             cd webapp
+            pwd
+            ls -al
             npm install aws-sdk
       - run:
           name: Zip artifact
           command: |
             cd ~
+            ls -al
             mkdir lambda_function
-            zip -r csye6225-lambda-${CIRCLE_BUILD_NUM}.zip ~/webapp/node_modules ~/webapp/lambda.js
+            ls -al
+            zip -r csye6225-lambda-${CIRCLE_BUILD_NUM}.zip ~/project/webapp/node_modules ~/project/webapp/index.js
+            pwd
+            ls
             mv csye6225-lambda-${CIRCLE_BUILD_NUM}.zip lambda_function
+            pwd
+            ls
       - run:
           name: Update function
           command: |
+            pwd
             function_name=$(aws lambda get-function --function-name ResetPassword --query Configuration.FunctionName)
             filename=csye6225-lambda-${CIRCLE_BUILD_NUM}.zip
-            if [[ $function_name == '"ResetPassword"' ]] \
-            then \
+            if [[ $function_name == '"ResetPassword"' ]]; then \
                 aws lambda update-function-code --zip-file=fileb://lambda_function/${filename} --region=us-east-1 --function-name=ResetPassword; \
                 echo 'Lambda Function Updated!'; \
               else \
