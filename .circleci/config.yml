@@ -63,7 +63,7 @@ jobs:
             function_name=$(aws lambda get-function --function-name ResetPassword --query Configuration.FunctionName)
             filename=csye6225-lambda-${CIRCLE_BUILD_NUM}.zip
             if [[ $function_name == '"ResetPassword"' ]]; then \
-                aws lambda update-function-code --zip-file=fileb://lambda_function/${filename} --region=us-east-1 --function-name=ResetPassword; \
+                aws lambda update-function-code --zip-file=fileb://project/lambda_function/${filename} --region=us-east-1 --function-name=ResetPassword; \
                 echo 'Lambda Function Updated!'; \
               else \
                 echo 'Failed to update Lambda Function. Lambda Function does not exist!'; \
