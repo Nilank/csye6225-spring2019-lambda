@@ -30,9 +30,8 @@ Environment varibales
 * AWS_REGION
 * AWS_SECRET_KEY
 * AWS_ACCESS_KEY
-* AWS_CODE_DEPLOY_BUCKET
 
 ### Usage
 * A git commit will automatically execute CircleCI JOB
 * A job can also be initiated using the following command
-`curl -u 'put_circleci_user_token' -d build_parameters[CIRCLE_JOB]=build-app https://circleci.com/api/v1.1/project/github/<username>/csye6225-spring2019-lambda/tree/<branch>`
+`curl -u 'put_circleci_user_token' -d build_parameters[CIRCLE_JOB]=build-lambda-function https://circleci.com/api/v1.1/project/github/<username>/csye6225-spring2019-lambda/tree/<branch>`
