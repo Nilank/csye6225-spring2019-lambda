@@ -29,7 +29,7 @@ exports.handler = function (event, context, callback) {
     const uuidv1 = require('uuid/v1');
     var token = uuidv1();
 
-    var expiryTime = 20; //20 minutes
+    var expiryTime = 1; //1 minutes
     var ttl = (new Date).getTime() + (expiryTime * 60 * 1000); //Adding 20 mins to the current timestamp
 
     const docClient = new AWS.DynamoDB.DocumentClient();
